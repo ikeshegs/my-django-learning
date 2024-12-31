@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import path
 
 from .views import home_view
+from articles import views
 
 urlpatterns = [
-    path('/', home_view),   # index / root / home
+    path('', home_view),   # index / root / home
+    path('articles/<int:id>/', views.article_detail_view),  # dynamic url routing
     path('admin/', admin.site.urls),
 ]
