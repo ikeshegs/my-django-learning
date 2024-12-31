@@ -19,7 +19,7 @@ def home_view(request, *args, **kwargs):
     '''
 
     name = "Justin"
-    random_id = random.randint(0, 3)
+    random_id = random.randint(1, 3)
 
     # from the database
     article_obj = Article.objects.get(id=random_id)
