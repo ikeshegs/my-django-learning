@@ -3,8 +3,8 @@ To render html web pages
 '''
 import random
 
-from django.http import HttpResponse
-from django.template.loader import render_to_string
+from django.http import HttpResponse # type: ignore
+from django.template.loader import render_to_string # type: ignore
 
 from articles.models import Article
 

@@ -1,10 +1,11 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required # type: ignore
+from django.shortcuts import render # type: ignore
 
 from .forms import ArticleForm
 from .models import Article
-# Create your views here.
 
+
+# Create your views here.
 def article_search_view(request):
     query_dict = request.GET    # This is a dictionary
     # query = query_dict.get('q') # <input type="text" name="q" />
