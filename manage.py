@@ -2,13 +2,15 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import dotenv # type: ignore
 
 
 def main():
     """Run administrative tasks."""
+    dotenv.read_dotenv()
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'trydjango.settings')
     try:
-        from django.core.management import execute_from_command_line
+        from django.core.management import execute_from_command_line # type: ignore
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "
