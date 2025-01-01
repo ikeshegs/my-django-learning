@@ -22,14 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-$x=m^j@os_vk5^vd@!x(rgf&stdr$m*(wnzabc1$%jwj859#h#')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-$x=m^j@os_vk5^vd@!x(rgf&stdr$m*(wnzabc1$%jwj859#h#')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.environ.get('DEBUG')) == '1'    # 1 == True
 
 ALLOWED_HOSTS = []
 if not DEBUG:
-    ALLOWED_HOSTS += [os.environ.get('ALLOWED_HOSTS')]
+    ALLOWED_HOSTS += [os.environ.get('DJANGO_ALLOWED_HOSTS')]
 
 
 # Application definition
@@ -87,6 +87,32 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+POSTGRES_DB = os.environ.get("POSTGRES_DB")
+POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
+POSTGRES_USER = os.environ.get("POSTGRES_USER")
+POSTGRES_HOST = os.environ.get("POSTGRES_HOST")
+POSTGRES_PORT = os.environ.get("POSTGRES_PORT")
+
+POSTGRES_READY = (
+    POSTGRES_DB is not None
+    and POSTGRES_PASSWORD is not None
+    and POSTGRES_USER is not None
+    and POSTGRES_HOST is not None
+    and POSTGRES_PORT is not None
+)
+
+if POSTGRES_READY:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": POSTGRES_DB,
+            "USER": POSTGRES_USER,
+            "PASSWORD": POSTGRES_PASSWORD,
+            "HOST": POSTGRES_HOST,
+            "PORT": POSTGRES_PORT,
+        }
+    }
 
 
 # Password validation
