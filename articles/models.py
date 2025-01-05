@@ -21,7 +21,7 @@ class Article(models.Model):
 
 def slugify_instance_title(instance, save=False):
     slug = slugify(instance.title)
-    qs = Article.objects.filter(slug=slug).exclude(id=instance.id)
+    qs = Article.objects.filter(slug=slug).exclude(id=instance.id) # qs = QuerySets
 
     if qs.exists():
         slug = f"{slug}-{qs.count() + 1}"
