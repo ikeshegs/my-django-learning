@@ -21,3 +21,4 @@ def slugify_instance_title(instance, save=False, new_slug=None):
 
     if save:
         instance.save()
+    return instance
