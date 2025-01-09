@@ -32,8 +32,8 @@ from accounts.views import (
 urlpatterns = [
     path('', home_view),   # index / root / home
     path('articles/', article_search_view),
-    path('articles/create/', article_create_view),
-    path('articles/<int:id>/', article_detail_view),  # dynamic url routing
+    path('articles/create/', article_create_view, name='article-create'),
+    path('articles/<slug:slug>/', article_detail_view, name='article-detail'),  # dynamic url routing
     path('admin/', admin.site.urls),
     path("login/", login_view),
     path('logout/', logout_view),
