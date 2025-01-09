@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required # type: ignore
-from django.shortcuts import render # type: ignore
+from django.shortcuts import redirect, render # type: ignore
 from django.http import Http404
 
 from .forms import ArticleForm
@@ -40,8 +40,11 @@ def article_create_view(request):
         article_object = form.save()
         context["form"] = form
 
-        context['object'] = article_object
-        context['created'] = True
+        # return redirect(article_object.get_absolute_url())
+        return redirect("article-detail", slug=article_object.slug) # This is the same as the above line
+    
+        # context['object'] = article_object
+        # context['created'] = True
     
     return render(request, "articles/create.html", context=context)
 
